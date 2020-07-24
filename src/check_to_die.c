@@ -67,7 +67,8 @@ static void		delete_cursor(t_cursor *cursor, t_vm *vm)
 	if (vm->stat_fl)
 		ft_printf("%sCursor of %s %sis dead%s\n", cursor->player->color,
 				  cursor->player->name, RED, NC);
-	free(cursor);
+	if (cursor)
+		free(cursor);
 	cursor = NULL;
 	vm->cursors_num--;
 }
