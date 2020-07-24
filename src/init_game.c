@@ -6,7 +6,7 @@
 /*   By: ddamaris <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 22:09:21 by ddamaris          #+#    #+#             */
-/*   Updated: 2020/07/23 13:51:14 by ctelma           ###   ########.fr       */
+/*   Updated: 2020/07/24 16:10:27 by ctelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void			add_cursor(t_player *player, int32_t pc, t_vm *vm)
 		vm->cursors = cursor;
 		vm->cursors->next = tmp;
 	}
-	ft_printf("\tCursor player name - %s\n", cursor->player->name);
+//	ft_printf("\tCursor player name - %s\n", cursor->player->name);
 	vm->cursors_num++;
 }
 void			init_cursors(t_vm *vm)

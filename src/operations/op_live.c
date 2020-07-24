@@ -6,7 +6,7 @@
 /*   By: ctelma <ctelma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/18 21:23:10 by ctelma            #+#    #+#             */
-/*   Updated: 2020/07/23 13:51:15 by ctelma           ###   ########.fr       */
+/*   Updated: 2020/07/24 16:10:27 by ctelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void				op_live(t_vm *vm, t_cursor *cursor)
 	player_id = (get_op_arg(vm, cursor, 1, false));
 	cursor->last_live_cycle = vm->cur_cycle;
 	player = NULL;
-	if (player_id == cursor->reg[0])
+	if (player_id == cursor->player->id)
 	{
 		player = vm->players[FT_ABS(player_id) - 1];
 		player->last_live_cycle = vm->cur_cycle;

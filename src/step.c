@@ -6,7 +6,7 @@
 /*   By: ddamaris <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 12:34:21 by ddamaris          #+#    #+#             */
-/*   Updated: 2020/07/23 13:51:14 by ctelma           ###   ########.fr       */
+/*   Updated: 2020/07/24 16:10:27 by ctelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 int		step_over_arg(int8_t arg_type, t_op *op)
 {
-	if (arg_type == T_REG)
+	if (arg_type & T_REG)
 		return (1);
-	else if (arg_type == T_DIR)
+	else if (arg_type & T_DIR)
 		return (op->t_dir_size);
-	else if (arg_type == T_IND)
+	else if (arg_type & T_IND)
 		return (IND_SIZE);
 	return (0);
 }
