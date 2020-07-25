@@ -28,7 +28,7 @@ FT_PRINTF = $(FT_PRINTF_DIR)libftprintf.a
 FT_PRINTF_DIR = ./ft_printf/
 FT_PRINTF_INC = $(FT_PRINTF_DIR)
 
-HEADERS_DIR = ./inludes/
+HEADERS_DIR = ./includes/
 
 VM_HEADERS_L = \
 			op.h \
@@ -70,19 +70,19 @@ $(VM_NAME): $(FT_PRINTF) $(VM_OBJS_DIR) $(VM_OP_OBJS_DIR) $(VM_OBJS) $(VM_OP_OBJ
 	@echo "$(VM_NAME): $(GREEN)$(VM_NAME) was created$(RESET)"
 
 $(VM_OBJS_DIR):
-	mkdir -p $(VM_OBJS_DIR)
+	@mkdir -p $(VM_OBJS_DIR)
 	@echo "$(VM_NAME): $(GREEN)$(VM_OBJS_DIR) was created$(RESET)"
 
 $(VM_OBJS_DIR)%.o : $(VM_SRC_DIR)%.c $(VM_HEADERS)
-	$(CC) $(FLAGS) -c $(VM_INC) $< -o $@
+	@$(CC) $(FLAGS) -c $(VM_INC) $< -o $@
 	@echo "$(GREEN).$(RESET)\c"
 
 $(VM_OP_OBJS_DIR):
-	mkdir -p $(VM_OP_OBJS_DIR)
+	@mkdir -p $(VM_OP_OBJS_DIR)
 	@echo "$(VM_NAME): $(GREEN)$(VM_OP_OBJS_DIR) was created$(RESET)"
 
 $(VM_OP_OBJS_DIR)%.o : $(VM_OP_SRC_DIR)%.c $(VM_HEADERS)
-	$(CC) $(FLAGS) -c $(VM_INC) $< -o $@
+	@$(CC) $(FLAGS) -c $(VM_INC) $< -o $@
 	@echo "$(GREEN).$(RESET)\c"
 
 $(FT_PRINTF):
