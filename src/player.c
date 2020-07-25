@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm.h"
+#include "../includes/vm.h"
 
 static t_player	*init_player(t_vm  *vm)
 {
@@ -67,4 +67,5 @@ void		*add_player(char *filename, int id, t_vm *vm)
 	else
 		put_player(player, vm);
 	vm->players_num++;
+	return(0);
 }

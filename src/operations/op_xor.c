@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm.h"
+#include "../../includes/vm.h"
 
 static void	print_xor(t_cursor *cursor, int32_t value_1, int32_t value_2,
 						int32_t r_id)

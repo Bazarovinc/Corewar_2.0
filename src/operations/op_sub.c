@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm.h"
+#include "../../includes/vm.h"
 
 static void	print_sub(t_cursor *cursor, int32_t r1_id, int32_t r2_id,
 						int32_t r3_id)

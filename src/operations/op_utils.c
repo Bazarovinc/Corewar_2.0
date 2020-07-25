@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm.h"
+#include "../../includes/vm.h"
 
 int32_t		bytecode_to_int32(u_int8_t *arena, int32_t addr, int32_t size)
 {

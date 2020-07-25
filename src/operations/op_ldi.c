@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm.h"
+#include "../../includes/vm.h"
 
 static void	print_ldi(t_cursor *cursor, int32_t addr_1, int32_t addr_2,
 				int32_t reg_id)

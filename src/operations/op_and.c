@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#include "vm.h"
+#include "../../includes/vm.h"
 
 static void	print_and(t_cursor *cursor, int32_t v1, int32_t v2,
 						int32_t r_id)

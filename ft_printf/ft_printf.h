@@ -99,5 +99,6 @@ int				print_digit_u(t_struct *f_lst, unsigned long long d);
 int				print_if_hash(t_struct *f_lst, unsigned long long d);
 char			*round_f(char *s);
 char			*str_transform(char *src, int l);
+int             digit_distribution(t_struct *f_lst);
 
 #endif

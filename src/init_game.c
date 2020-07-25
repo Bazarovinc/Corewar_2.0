@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm.h"
+#include "../includes/vm.h"
 
 void			update_cycles_to_exec(t_cursor *cursor, t_vm *vm)
 {
@@ -26,7 +26,7 @@ void			update_cycles_to_exec(t_cursor *cursor, t_vm *vm)
 
 void			init_cursor(t_player *player, t_cursor *cursor, int32_t pc)
 {
-	int32_t		cursor_id;
+	//int32_t		cursor_id;
 
 	cursor->carry = 0;
 	cursor->op_code = 0;

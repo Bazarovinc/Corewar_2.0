@@ -6,11 +6,11 @@
 /*   By: ddamaris <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/17 17:20:21 by ddamaris          #+#    #+#             */
-/*   Updated: 2020/07/23 13:51:14 by ctelma           ###   ########.fr       */
+/*   Updated: 2020/07/25 12:51:41 by student          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm.h"
+#include "../includes/vm.h"
 
 static void		print_cycle_to_die(t_vm *vm)
 {
@@ -76,7 +76,7 @@ static void		delete_cursor(t_cursor *cursor, t_vm *vm)
 void			check_and_delete(t_vm *vm)
 {
 	t_cursor	*cursor;
-	t_cursor	*tmp;
+	//t_cursor	*tmp;
 
 	vm->checks_num++;
 	cursor = vm->cursors;
@@ -86,7 +86,7 @@ void			check_and_delete(t_vm *vm)
 	while (cursor)
 	{
 		if (vm->cycles_to_die <= 0 ||
-			(vm->cur_cycle - cursor->last_live_cycle) >= vm->cycles_to_die)
+		(int)(vm->cur_cycle - cursor->last_live_cycle) >= vm->cycles_to_die)
 			delete_cursor(cursor, vm);
 		cursor = cursor->next;
 	}

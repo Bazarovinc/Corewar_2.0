@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm.h"
+#include "../includes/vm.h"
 
 static void		update_cursor(t_cursor *cursor)
 {
@@ -102,7 +102,7 @@ void			run_vm(t_vm *vm)
 			do_operation(cursor, vm);
 			cursor = cursor->next;
 		}
-		if (vm->cycles_to_die == vm->cycles_after_check
+		if ((size_t)vm->cycles_to_die == vm->cycles_after_check
 			|| vm->cycles_to_die <= 0)
 			check_and_delete(vm);
 		vm->cur_cycle++;

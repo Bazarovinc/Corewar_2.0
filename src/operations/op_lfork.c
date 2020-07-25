@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm.h"
+#include "../../includes/vm.h"
 
 static void	print_lfork(t_cursor *cursor, int32_t addr)
 {
@@ -23,7 +23,7 @@ static void	print_lfork(t_cursor *cursor, int32_t addr)
 void				op_lfork(t_vm *vm, t_cursor *cursor)
 {
 	int32_t		addr;
-	t_cursor	*new;
+	//t_cursor	*new;
 
 	cursor->step += 1;
 	addr = get_op_arg(vm, cursor, 1, true);

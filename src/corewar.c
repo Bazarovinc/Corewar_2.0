@@ -39,6 +39,7 @@ int			main(int argc, char **argv)
 {
 	t_vm *vm;
 
+	vm = NULL;
 	if (argc >= 2)
 	{
 		vm = init_vm();

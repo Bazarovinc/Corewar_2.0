@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm.h"
+#include "../includes/vm.h"
 
 unsigned char	*read_str(int fd, size_t len, t_vm *vm)
 {
@@ -19,7 +19,7 @@ unsigned char	*read_str(int fd, size_t len, t_vm *vm)
 
 	tmp = (unsigned char *)ft_strnew(len);
 	size = read(fd, tmp, len);
-	if (size == -1)
+	if ((int)size == -1)
 	{
 		free (tmp);
 		error_func("r-", "ERROR: Can't open champion file", vm);
@@ -34,7 +34,7 @@ unsigned char	*read_str(int fd, size_t len, t_vm *vm)
 
 static void		check_zero(int fd, t_vm *vm)
 {
-	char		*str;
+	unsigned char   *str;
 
 	str = read_str(fd, 4, vm);
 	if (!(str[0] == 0 && str[1] == 0 && str[2] == 0 && str[3] == 0))

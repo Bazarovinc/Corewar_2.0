@@ -48,7 +48,7 @@ int		digit_distribution(t_struct *f_lst)
 		length = (work_out_uxo(f_lst));
 	}
 	if (f_lst->f_type == 'f' || f_lst->f_type == 'F')
-		length = (work_out_f(f_lst));
+	    length = (work_out_f(f_lst));
 	return (length);
 }
 
