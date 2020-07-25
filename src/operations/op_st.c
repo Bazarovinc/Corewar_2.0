@@ -29,16 +29,17 @@ inline static void	vs_st(t_vm *vm, t_cursor *cursor, int32_t addr)
 void		op_st(t_vm *vm, t_cursor *cursor)
 {
 	int32_t	r_id;
-	int32_t	r_value;
+	int32_t	value;
 	int32_t	addr;
 
 	cursor->step += 2;
 	r_id = get_byte(vm, cursor->pc, cursor->step);
 	cursor->step += 1;
-	r_value = cursor->reg[r_id - 1];
+	value = cursor->reg[r_id - 1];
 	if (cursor->args_types[1] == T_REG)
 	{
-		cursor->reg[r_id - 1] = r_value;
+		r_id = get_byte(vm, cursor->pc, cursor->step);
+		cursor->reg[r_id - 1] = value;
 		cursor->step += 1;
 	}
 	else
@@ -46,7 +47,7 @@ void		op_st(t_vm *vm, t_cursor *cursor)
 		addr = bytecode_to_int32(vm->arena,
 							cursor->pc + cursor->step, IND_SIZE);
 		int32_to_bytecode(vm->arena, cursor->pc + (addr % IDX_MOD),
-							r_value, DIR_SIZE);
+							value, DIR_SIZE);
 //		vs_st(vm, cursor, addr);
 		cursor->step += IND_SIZE;
 	}
