@@ -14,6 +14,7 @@ VM_NAME = corewar
 
 CC = gcc
 FLAGS = -Wall -Werror -Wextra
+WROWFL = -lncurses
 
 VM_LIB = -L $(FT_PRINTF_DIR) -lftprintf
 VM_INC = -I$(HEADERS_DIR) \
@@ -32,14 +33,15 @@ HEADERS_DIR = ./includes/
 
 VM_HEADERS_L = \
 			op.h \
-			vm.h
+			vm.h 
 VM_HEADERS = $(addprefix $(HEADERS_DIR), $(VM_HEADERS_L))
 
 VM_SRC_DIR = ./src/
 VM_SRC_LIST = check_to_die.c corewar.c free_vm.c ft_error.c \
 			init_game.c parse_champion.c parser.c player.c \
 			printing.c step.c utils1.c \
-			virtual_machine.c
+			virtual_machine.c \
+			ft_drow.c
 VM_SRCS = $(addprefix $(VM_SRC_DIR), $(VM_SRC_LIST))
 VM_OP_SRC_DIR = $(VM_SRC_DIR)operations/
 VM_OP_SRC_LIST = op_add.c op_aff.c op_and.c op_fork.c op_ld.c op_ldi.c\
@@ -65,7 +67,7 @@ RESET = \033[0m
 all: $(VM_NAME)
 
 $(VM_NAME): $(FT_PRINTF) $(VM_OBJS_DIR) $(VM_OP_OBJS_DIR) $(VM_OBJS) $(VM_OP_OBJS)
-	@$(CC) $(FLAGS) $(VM_LIB) $(VM_INC) $(VM_OBJS) $(VM_OP_OBJS) -o $(VM_NAME)
+	@$(CC) $(FLAGS) $(WROWFL) $(VM_LIB) $(VM_INC) $(VM_OBJS) $(VM_OP_OBJS) -o $(VM_NAME)
 	@echo "\n$(VM_NAME): $(GREEN)object files were created$(RESET)"
 	@echo "$(VM_NAME): $(GREEN)$(VM_NAME) was created$(RESET)"
 
