@@ -60,12 +60,12 @@ int32_t		get_op_arg(t_vm *vm, t_cursor *cursor, u_int8_t index, char mod)
 
 	op = &op_tab[cursor->op_code - 1];
 	value = 0;
-	if (cursor->args_types[index - 1] == T_REG)
+	if (cursor->args_types[index - 1] & T_REG)
 		value = cursor->reg[get_byte(vm, cursor->pc, cursor->step) - 1];
-	else if (cursor->args_types[index - 1] == T_DIR)
+	else if (cursor->args_types[index - 1] & T_DIR)
 		value = bytecode_to_int32(vm->arena,
 					cursor->pc + cursor->step, op->t_dir_size);
-	else if (cursor->args_types[index - 1] == T_IND)
+	else if (cursor->args_types[index - 1] & T_IND)
 	{
 		addr = bytecode_to_int32(vm->arena,
 					cursor->pc + cursor->step, IND_SIZE);

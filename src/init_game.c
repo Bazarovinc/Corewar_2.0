@@ -42,7 +42,6 @@ void			init_cursor(t_player *player, t_cursor *cursor, int32_t pc)
 void			add_cursor(t_player *player, int32_t pc, t_vm *vm)
 {
 	t_cursor	*cursor;
-	t_cursor	*tmp;
 
 	cursor = NULL;
 	if (!(cursor = (t_cursor *)malloc(sizeof(t_cursor))))
@@ -52,9 +51,8 @@ void			add_cursor(t_player *player, int32_t pc, t_vm *vm)
 		vm->cursors = cursor;
 	else
 	{
-		tmp = vm->cursors;
+		cursor->next = vm->cursors;
 		vm->cursors = cursor;
-		vm->cursors->next = tmp;
 	}
 //	ft_printf("\tCursor player name - %s\n", cursor->player->name);
 	vm->cursors_num++;

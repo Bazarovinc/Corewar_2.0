@@ -21,7 +21,7 @@ static void		print_cycle_to_die(t_vm *vm)
 				  vm->cycles_to_die);
 		ft_printf("(%d) reached MAX_CHECKS(%d)\n", vm->checks_num, MAX_CHECKS);
 	}
-	if (vm->lives_num >= NBR_LIVE)
+	else if (vm->lives_num >= NBR_LIVE)
 	{
 		ft_printf("Cycle_to_die reduced to %d because number of lives ",
 				  vm->cycles_to_die);
@@ -68,9 +68,13 @@ static void		delete_cursor(t_cursor *cursor, t_vm *vm)
 		ft_printf("%sCursor of %s %sis dead%s\n", cursor->player->color,
 				  cursor->player->name, RED, NC);
 	if (cursor)
+	{
+		cursor->player = NULL;
+		cursor->next = NULL;
 		free(cursor);
-	cursor = NULL;
-	vm->cursors_num--;
+		cursor = NULL;
+		vm->cursors_num--;
+	}
 }
 
 void			check_and_delete(t_vm *vm)

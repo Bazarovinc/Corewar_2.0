@@ -12,12 +12,14 @@
 
 #include "vm.h"
 
-inline static void	print_live(t_cursor *cursor)
+static void			print_live(t_cursor *cursor, t_player *player, int id)
 {
 	ft_printf("%s", cursor->player->color);
 	ft_printf("cursor of %10s executes operation: ", cursor->player->name);
-	ft_printf("live %d (%s)\n", FT_ABS(cursor->player->id),
-				cursor->player->name);
+	if (player)
+		ft_printf("live %d (%s)\n", id, player->name);
+	else
+		ft_printf("live %d (NULL)\n", id);
 	ft_printf("%s", NC);
 }
 
@@ -34,13 +36,15 @@ void				op_live(t_vm *vm, t_cursor *cursor)
 	int		player_id;
 	t_player	*player;
 
+	player = NULL;
 	cursor->step += 1;
 	player_id = (get_op_arg(vm, cursor, 1, false));
 	cursor->last_live_cycle = vm->cur_cycle;
 	player = NULL;
-	if (player_id == cursor->player->id)
+	if (player_id <= -1 && player_id >= -MAX_PLAYERS &&
+		(player = vm->players[FT_ABS(player_id) - 1]))
 	{
-		player = vm->players[FT_ABS(player_id) - 1];
+//		player = vm->players[FT_ABS(player_id) - 1];
 		player->last_live_cycle = vm->cur_cycle;
 		player->curr_lives_num++;
 		vm->lives_num++;
@@ -54,5 +58,5 @@ void				op_live(t_vm *vm, t_cursor *cursor)
 			print_live_msg(player);
 	}
 	if (vm->stat_fl)
-		print_live(cursor);
+		print_live(cursor, player, player_id);
 }
