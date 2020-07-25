@@ -63,7 +63,9 @@ HEADERS = $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 # SOURCES
 
 SOURCES_DIRECTORY = ./
-SOURCES_LIST = ft_is_flag.c ft_printf.c ft_work_out.c work_out_char.c work_out_d.c work_out_uxo.c ft_strlen.c
+SOURCES_LIST = ft_is_flag.c ft_printf.c ft_work_out.c long_math.c \
+		work_out_char.c work_out_d.c work_out_uxo.c ft_strlen.c \
+		str_longmath.c work_out_f.c ft_strnew.c
 
 
 SOURCES = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST))
