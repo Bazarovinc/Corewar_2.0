@@ -25,7 +25,7 @@ void init_drow()
 {
 	initscr();
 	//noecho();
-	//curs_set(0);
+	curs_set(0);
 	init_colors();
 	//start_color();
 }
@@ -151,7 +151,7 @@ void drow_arena(t_vm *vm)
 
 	arena = vm->arena;
 	getmaxyx(stdscr, row, col);
-        clear();
+        //clear();
 	draw_frame();
 	k = 0;
         i = 2;
@@ -165,7 +165,9 @@ void drow_arena(t_vm *vm)
                 while (j < col - 3 && k < MEM_SIZE)
                 {
 			ft_start_color(vm, k);
+			mvwprintw(stdscr, i, j, "  ");
                         mvwprintw(stdscr, i, j, "%02X", arena[k]);
+			refresh();
 			stop_color();
                         k++;
                         j+=3;
@@ -175,7 +177,7 @@ void drow_arena(t_vm *vm)
 	mvwprintw(stdscr, 2, col + 2, "cycles_to_die = %i", vm->cycles_to_die);
 	mvwprintw(stdscr, 3, col + 2, "cur_cycle = %i", vm->cur_cycle);
 	refresh();
-	napms(500);
+	napms(50);
 }
 
 void stop_drow()
