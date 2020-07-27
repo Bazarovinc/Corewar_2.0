@@ -80,6 +80,18 @@ static int8_t			arg_code[3] = {
 		T_IND
 };
 */
+
+typedef struct			s_vis
+{
+	int			row;
+	int			col;
+	int			add;
+	int			line;
+	size_t			ctd;
+	int			speed;
+	u_int8_t                        arena[MEM_SIZE];
+}				t_vis;
+
 typedef struct			s_cursor
 {
 	int					carry;
@@ -112,6 +124,7 @@ typedef struct			s_vm
 	int 				alive_fl;
 	size_t 				dump_fl;
 	int					aff_fl;
+	t_vis				vis;
 }						t_vm;
 
 typedef struct			s_op
@@ -183,7 +196,7 @@ void					op_xor(t_vm *vm, t_cursor *cursor);
 void					op_zjmp(t_vm *vm, t_cursor *cursor);
 
 void					init_colors();
-void					init_drow();
+void					init_drow(t_vm *vm);
 void					color_select(int is_curs, int playerno);
 void					ft_start_color(t_vm *vm, int pose);
 void					stop_color();

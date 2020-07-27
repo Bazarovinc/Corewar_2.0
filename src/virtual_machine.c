@@ -91,6 +91,7 @@ void			run_vm(t_vm *vm)
 {
 	t_cursor	*cursor;
 
+	init_drow(vm);
 	while (vm->cursors_num)
 	{
 //		ft_printf("\n\t\tNumber of cycles %d\t\n\n", vm->cur_cycle);
@@ -98,10 +99,7 @@ void			run_vm(t_vm *vm)
 			print_dump(vm->arena, vm);
 		cursor = vm->cursors;
 		if (vm->vis_fl == 1)
-		{
-			init_drow();
 			drow_arena(vm);
-		}
 		while (cursor)
 		{
 			do_operation(cursor, vm);

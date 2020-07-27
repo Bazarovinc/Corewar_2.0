@@ -21,11 +21,39 @@ void init_colors()
         init_pair(p4w, COLOR_WHITE, COLOR_BLUE);
 }
 
-void init_drow()
+void rebild(t_vm *vm)
 {
+	u_int8_t        *master;
+        u_int8_t        *slave;
+	int i;
+
+	master = vm->arena;
+        slave = vm->vis.arena;
+        i = 0;
+        while (i < MEM_SIZE)
+        {
+                slave[i] = master[i];
+                i++;
+        }
+}
+
+void init_drow(t_vm *vm)
+{
+	int row;
+	int col;
+	
+	rebild(vm);
+	getmaxyx(stdscr, row, col);
+	vm->vis.row = row;
+	vm->vis.col = col;
+	vm->vis.ctd = 1;
+	vm->vis.add = 25;
+	vm->vis.line = 5;
+	vm->vis.speed = 500;
 	initscr();
 	//noecho();
 	curs_set(0);
+	timeout(0);
 	init_colors();
 	//start_color();
 }
@@ -103,7 +131,7 @@ void stop_color()
         attroff(COLOR_PAIR(p4b));
 }
 
-void draw_frame()
+void draw_frame(t_vm *vm)
 {
 	int i;
 	int j;
@@ -112,7 +140,7 @@ void draw_frame()
 
 	getmaxyx(stdscr, row, col);
 	i = 0;
-	while (i < row)
+	while (i < row )
 	{
 		j = 0;
 		while (j < col)
@@ -120,42 +148,91 @@ void draw_frame()
 			move(i, j);
 			if (i == 0 && j == 0)
 				waddch(stdscr, 108 | A_ALTCHARSET);
-			else if (i == 0 && j == col - 25)
+			else if (i == 0 && j == col - 1 - vm->vis.add)
 				waddch(stdscr, 119 | A_ALTCHARSET);
 			else if (i == 0 && j == col - 1)
                                 waddch(stdscr, 107 | A_ALTCHARSET);
                         else if (i == row - 1 && j == 0)
                                 waddch(stdscr, 109 | A_ALTCHARSET);
-                        else if (i == row - 1 && j == col - 25)
+                        else if (i == row - 1 - vm->vis.line && j == col - 1 - vm->vis.add)
                                 waddch(stdscr, 118 | A_ALTCHARSET);
                         else if (i == row - 1 && j == col - 1)
                                 waddch(stdscr, 106 | A_ALTCHARSET);
-			else if (i == 0 || i == row - 1)
+			else if (i == row - 1 - vm->vis.line && j == 0)
+				waddch(stdscr, 116 | A_ALTCHARSET);
+			else if (i == row - 1 - vm->vis.line && j == col - 1)
+                                waddch(stdscr, 117 | A_ALTCHARSET);
+			else if (i == 0 || i == row - 1 || i == row - 1 - vm->vis.line)
 				waddch(stdscr, 113 | A_ALTCHARSET);
-			else if (j == 0 || j == col - 1 || j == col - 25)
+			else if (j == 0 || j == col - 1)
+                                waddch(stdscr, 120 | A_ALTCHARSET);
+			else if (j == col - 1 - vm->vis.add && i < row - 1 - vm->vis.line)
                                 waddch(stdscr, 120 | A_ALTCHARSET);
 		j++;
 		}
 	i++;
 	}
+	mvwprintw(stdscr, row - vm->vis.line, 2, "\"q\" - exit visual mod");
+	mvwprintw(stdscr, row - vm->vis.line + 1, 2, "\"+\" - more speed");
+	mvwprintw(stdscr, row - vm->vis.line + 2, 2, "\"-\" - less speed");
+	if (vm->vis.speed == 0)
+		mvwprintw(stdscr, row - vm->vis.line + 3, 2, "unlimited speed");
+	else
+		mvwprintw(stdscr, row - vm->vis.line + 3, 2, "speed 1/%i fps", vm->vis.speed);
 }
+
+int find_ctd(t_vm *vm)
+{
+	int i;
+	u_int8_t	*master;
+	u_int8_t        *slave;
+
+	master = vm->arena;
+	slave = vm->vis.arena;
+	i = 0;
+	while (i < MEM_SIZE)
+	{
+		if (master[i] != slave[i])
+		//if (vm->vis.arena[i] != vm->arena[i])
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 
 void drow_arena(t_vm *vm)
 {
 	int i;
 	int j;
 	int k;
+	u_int8_t        *master;
+        u_int8_t        *slave;
+	int		key;
+
+        master = vm->arena;
+        slave = vm->vis.arena;
 	//int size[2]; //size[0] = row; size[1] = col;
 	int	row, col;
 	u_int8_t *arena;
 
+	vm->vis.ctd = find_ctd(vm);
+	if (vm->vis.ctd == 0)
+		return ;
+	key = getch();
 	arena = vm->arena;
 	getmaxyx(stdscr, row, col);
-        //clear();
-	draw_frame();
+	if (vm->vis.col != col || vm->vis.row != row)
+	{
+		clear();
+		vm->vis.col = col;
+		vm->vis.row = row;
+	}
+	draw_frame(vm);
 	k = 0;
         i = 2;
-	col-=25;
+	col-=vm->vis.add;
+	row-=vm->vis.line;
         while (i < row - 2 && k < MEM_SIZE)
         {
                 if (col % 2 == 0)
@@ -164,20 +241,50 @@ void drow_arena(t_vm *vm)
                         j = 3;
                 while (j < col - 3 && k < MEM_SIZE)
                 {
-			ft_start_color(vm, k);
+			if (master[k] != slave[k])
+				attron(A_UNDERLINE);
+			else
+				ft_start_color(vm, k);
 			mvwprintw(stdscr, i, j, "  ");
                         mvwprintw(stdscr, i, j, "%02X", arena[k]);
 			refresh();
+			attroff(A_UNDERLINE);
 			stop_color();
                         k++;
                         j+=3;
                 }
                 i++;
         }
+	i = row - 2;
+	if (k < MEM_SIZE)
+	{
+		if (col % 2 == 0)
+                        j = 2;
+                else
+                        j = 3;
+		while (j < col - 3)
+		{
+			move(i, j);
+			waddch(stdscr, 46 | A_ALTCHARSET);
+			j++;
+		}
+	}
 	mvwprintw(stdscr, 2, col + 2, "cycles_to_die = %i", vm->cycles_to_die);
 	mvwprintw(stdscr, 3, col + 2, "cur_cycle = %i", vm->cur_cycle);
+	if (key == 113)
+		vm->vis_fl = 0;
+	if (key == 61)
+		vm->vis.speed = vm->vis.speed - 100;
+	if (vm->vis.speed < 0)
+		vm->vis.speed = 0;
+	if (key == 45)
+		vm->vis.speed = vm->vis.speed + 100;
+	//mvwprintw(stdscr, row - 1, 2, "%i", key);
 	refresh();
-	napms(50);
+	//getch();
+	napms(vm->vis.speed);
+	vm->vis.ctd = 0;
+	rebild(vm);
 }
 
 void stop_drow()
