@@ -101,7 +101,7 @@ void ft_start_color(t_vm *vm, int pose)
 		cursor = vm->cursors;
 		while (cursor != NULL && is_curs == 0)
 		{
-			if (cursor->carry == pose)
+			if (cursor->pc == pose)
 				is_curs = 1;
 			if (is_curs == 0)
 				cursor = cursor->next;
