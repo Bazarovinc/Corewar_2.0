@@ -15,10 +15,10 @@
 static void	print_or(t_cursor *cursor, int32_t value_1, int32_t value_2,
 					int32_t r_id)
 {
-	ft_printf("%s", cursor->player->color);
-	ft_printf("cursor of %10s executes operation: ", cursor->player->name);
+//	ft_printf("%s", cursor->player->color);
+//	ft_printf("cursor of %10s executes operation: ", cursor->player->name);
 	ft_printf("or %d %d r%d\n", value_1, value_2, r_id);
-	ft_printf("%s", NC);
+//	ft_printf("%s", NC);
 }
 
 void				op_or(t_vm *vm, t_cursor *cursor)

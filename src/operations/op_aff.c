@@ -14,10 +14,10 @@
 
 static void	print_aff(t_cursor *cursor, char value)
 {
-	ft_printf("%s", cursor->player->color);
-	ft_printf("cursor of %10s executes operation: ", cursor->player->name);
+//	ft_printf("%s", cursor->player->color);
+//	ft_printf("cursor of %10s executes operation: ", cursor->player->name);
 	ft_printf("aff %c\n", value);
-	ft_printf("%s", NC);
+//	ft_printf("%s", NC);
 }
 
 

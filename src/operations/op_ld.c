@@ -14,10 +14,10 @@
 
 static void	print_ld(t_cursor *cursor, int32_t value, int32_t r_id)
 {
-	ft_printf("%s", cursor->player->color);
-	ft_printf("cursor of %10s executes operation: ld ", cursor->player->name);
-	ft_printf("%d r%d\n", value, r_id);
-	ft_printf("%s", NC);
+//	ft_printf("%s", cursor->player->color);
+//	ft_printf("cursor of %10s executes operation: ", cursor->player->name);
+	ft_printf("ld %d r%d\n", value, r_id);
+//	ft_printf("%s", NC);
 }
 
 void				op_ld(t_vm *vm, t_cursor *cursor)

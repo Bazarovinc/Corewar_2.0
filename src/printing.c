@@ -63,10 +63,3 @@ void		print_usage(t_vm *vm)
 	free_vm(vm);
 	exit(0);
 }
-
-/*void		print_error(char *error, t_vm *vm)
-{
-	ft_printf("%s\n", error);
-	free_vm(vm);
-	exit(0);
-}*/

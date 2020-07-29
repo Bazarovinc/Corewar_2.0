@@ -20,7 +20,7 @@
 # include <stdlib.h>
 # include "op.h"
 # include <fcntl.h>
-# include <curses.h>
+//# include <curses.h>
 
 # define COLOR_GREY     8
 # define p0             1
@@ -73,13 +73,12 @@ typedef struct			s_player
 	int32_t				pc;
 	struct s_player		*next;
 }						t_player;
-/*
+
 static int8_t			arg_code[3] = {
 		T_REG,
 		T_DIR,
 		T_IND
 };
-*/
 
 typedef struct			s_vis
 {
@@ -98,7 +97,7 @@ typedef struct			s_cursor
 	unsigned char		op_code;
 	size_t				last_live_cycle;
 	unsigned int		cycles_to_exec;
-	unsigned char		args_types[3];
+	int8_t				args_types[3];
 	int32_t				pc;
 	unsigned int		step;
 	int32_t				reg[REG_NUMBER];

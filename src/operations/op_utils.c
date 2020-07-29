@@ -60,12 +60,12 @@ int32_t		get_op_arg(t_vm *vm, t_cursor *cursor, u_int8_t index, char mod)
 
 	op = &op_tab[cursor->op_code - 1];
 	value = 0;
-	if (cursor->args_types[index - 1] & T_REG)
+	if (cursor->args_types[index - 1] == REG_CODE)
 		value = cursor->reg[get_byte(vm, cursor->pc, cursor->step) - 1];
-	else if (cursor->args_types[index - 1] & T_DIR)
+	else if (cursor->args_types[index - 1] == DIR_CODE)
 		value = bytecode_to_int32(vm->arena,
 					cursor->pc + cursor->step, op->t_dir_size);
-	else if (cursor->args_types[index - 1] & T_IND)
+	else if (cursor->args_types[index - 1] == IND_CODE)
 	{
 		addr = bytecode_to_int32(vm->arena,
 					cursor->pc + cursor->step, IND_SIZE);
@@ -91,17 +91,3 @@ void	duplicate_cursor(t_cursor *cursor, int32_t addr, t_vm *vm)
 	vm->cursors->carry = cursor->carry;
 	vm->cursors->last_live_cycle = cursor->last_live_cycle;
 }
-
-/*void		update_map(t_vm *vm, t_cursor *cursor, int32_t addr, int32_t size)
-{
-	int32_t value;
-
-	value = ((cursor->player->id - 1) % MAX_PLAYER_ID) + 1;
-	while (size)
-	{
-		vm->vs->map[calc_addr(addr + size - 1)].index = value;
-		vm->vs->map[calc_addr(addr
-								+ size - 1)].wait_cycles_store = CYCLE_TO_WAIT;
-		size--;
-	}
-}*/

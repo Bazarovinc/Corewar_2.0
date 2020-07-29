@@ -30,9 +30,10 @@ static int		check_args(t_cursor *cursor, t_op *op, t_vm *vm)
 	step = (op->args_types_code) ? 2 : 1;
 	while (i < op->args_num)
 	{
-		if (!(cursor->args_types[i] & op->args_types[i]))
+		if (!(cursor->args_types[i] &&
+				(arg_code[cursor->args_types[i] - 1] & op->args_types[i])))
 			return (0);
-		if (cursor->args_types[i] == T_REG)
+		if (cursor->args_types[i] == REG_CODE)
 		{
 			reg = vm->arena[cursor->pc + step];
 			if (reg < 1 || reg > REG_NUMBER)
@@ -74,7 +75,6 @@ static void		do_operation(t_cursor *cursor, t_vm *vm)
 		if (cursor->op_code >= 0x01 && cursor->op_code <= 0x10)
 		{
 			op = &op_tab[cursor->op_code - 1];
-//			ft_printf("Operation %s\tCursor player name - %s\n", op->name, cursor->player->name);
 			parse_args_types(cursor, op, vm);
 			if (check_args(cursor, op, vm))
 				op->func(vm, cursor);
@@ -91,15 +91,15 @@ void			run_vm(t_vm *vm)
 {
 	t_cursor	*cursor;
 
-	init_drow(vm);
 	while (vm->cursors_num)
 	{
-//		ft_printf("\n\t\tNumber of cycles %d\t\n\n", vm->cur_cycle);
+//		ft_printf("curr cycle %d\t cycle_to_die %d\t cursor num %d\tcycles after check %d\t lives %d\n",
+//				vm->cur_cycle, vm->cycles_to_die, vm->cursors_num, vm->cycles_after_check, vm->lives_num);
+//		init_drow();
 		if (vm->dump_fl == vm->cur_cycle)
 			print_dump(vm->arena, vm);
+//		drow_arena(vm);
 		cursor = vm->cursors;
-		if (vm->vis_fl == 1)
-			drow_arena(vm);
 		while (cursor)
 		{
 			do_operation(cursor, vm);
@@ -111,8 +111,7 @@ void			run_vm(t_vm *vm)
 		vm->cur_cycle++;
 		vm->cycles_after_check++;
 	}
-	if (vm->vis_fl == 1)
-		stop_drow();
+//	stop_drow();
 //	if (vm->stat_fl)
 //		ft_printf("\n\t\tNumber of cycles %d\t\n\n", vm->cur_cycle);
 }

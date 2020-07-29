@@ -15,13 +15,13 @@
 static void	print_ldi(t_cursor *cursor, int32_t addr_1, int32_t addr_2,
 				int32_t reg_id)
 {
-	ft_printf("%s", cursor->player->color);
-	ft_printf("cursor of %10s executes operation: ldi ", cursor->player->name);
-	ft_printf("%d %d r%d", addr_1, addr_2, reg_id);
-	ft_printf("\t\t| -> load from %d + %d = %d (with pc and mod %d)\n",
+//	ft_printf("%s", cursor->player->color);
+//	ft_printf("cursor of %10s executes operation: ", cursor->player->name);
+	ft_printf("ldi %d %d r%d", addr_1, addr_2, reg_id);
+	ft_printf("\t| -> load from %d + %d = %d (with pc and mod %d)\n",
 				addr_1, addr_2,	addr_1 + addr_2,
 				cursor->pc + (addr_1 + addr_2) % IDX_MOD);
-	ft_printf("%s", NC);
+//	ft_printf("%s", NC);
 }
 
 void				op_ldi(t_vm *vm, t_cursor *cursor)

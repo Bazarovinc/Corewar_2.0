@@ -14,11 +14,11 @@
 
 int		step_over_arg(int8_t arg_type, t_op *op)
 {
-	if (arg_type & T_REG)
+	if (arg_type == REG_CODE)
 		return (1);
-	else if (arg_type & T_DIR)
+	else if (arg_type == DIR_CODE)
 		return (op->t_dir_size);
-	else if (arg_type & T_IND)
+	else if (arg_type == IND_CODE)
 		return (IND_SIZE);
 	return (0);
 }

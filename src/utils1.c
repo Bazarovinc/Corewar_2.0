@@ -79,5 +79,4 @@ int			file_is_cor(char *str, t_vm *vm)
 		error_func("r-", "ERROR: Incorrect name of champion file", vm);
 		return (0);
 	}
-	return(0);
 }

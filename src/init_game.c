@@ -54,7 +54,6 @@ void			add_cursor(t_player *player, int32_t pc, t_vm *vm)
 		cursor->next = vm->cursors;
 		vm->cursors = cursor;
 	}
-//	ft_printf("\tCursor player name - %s\n", cursor->player->name);
 	vm->cursors_num++;
 }
 void			init_cursors(t_vm *vm)

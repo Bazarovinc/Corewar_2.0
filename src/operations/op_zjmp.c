@@ -14,10 +14,10 @@
 
 static void	print_zjmp(t_cursor *cursor, int32_t addr)
 {
-	ft_printf("%s", cursor->player->color);
-	ft_printf("cursor of %10s executes operation: ", cursor->player->name);
+//	ft_printf("%s", cursor->player->color);
+//	ft_printf("cursor of %10s executes operation: ", cursor->player->name);
 	ft_printf("zjmp %d %s\n", addr, (cursor->carry) ? "OK" : "FAILED");
-	ft_printf("%s", NC);
+//	ft_printf("%s", NC);
 }
 
 void				op_zjmp(t_vm *vm, t_cursor *cursor)
@@ -28,11 +28,7 @@ void				op_zjmp(t_vm *vm, t_cursor *cursor)
 	addr = get_op_arg(vm, cursor, 1, true);
 	if (cursor->carry)
 	{
-//		if (vm->vs)
-//		clear_cursor(vm, cursor);
 		cursor->pc = address_norming(cursor->pc + (addr % IDX_MOD));
-//		if (vm->vs)
-//			draw_cursor(vm, cursor);
 		cursor->step = 0;
 	}
 	if (vm->stat_fl)

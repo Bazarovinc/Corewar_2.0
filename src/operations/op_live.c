@@ -14,13 +14,15 @@
 
 static void			print_live(t_cursor *cursor, t_player *player, int id)
 {
-	ft_printf("%s", cursor->player->color);
-	ft_printf("cursor of %10s executes operation: ", cursor->player->name);
+//	ft_printf("%s", cursor->player->color);
+//	ft_printf("cursor of %10s executes operation: ", cursor->player->name);
 	if (player)
-		ft_printf("live %d (%s)\n", id, player->name);
+//		ft_printf("live %d (%s)\n", id, player->name);
+		ft_printf("live %d\n", id);
 	else
-		ft_printf("live %d (NULL)\n", id);
-	ft_printf("%s", NC);
+//		ft_printf("live %d (NULL)\n", id);
+		ft_printf("live %d\n", id);
+//	ft_printf("%s", NC);
 }
 
 void	print_live_msg(t_player *player)
@@ -39,24 +41,18 @@ void				op_live(t_vm *vm, t_cursor *cursor)
 	player = NULL;
 	cursor->step += 1;
 	player_id = (get_op_arg(vm, cursor, 1, false));
-	cursor->last_live_cycle = vm->cur_cycle;
 	player = NULL;
 	if (player_id <= -1 && player_id >= -MAX_PLAYERS &&
 		(player = vm->players[FT_ABS(player_id) - 1]))
 	{
-//		player = vm->players[FT_ABS(player_id) - 1];
 		player->last_live_cycle = vm->cur_cycle;
 		player->curr_lives_num++;
-		vm->lives_num++;
 		vm->last_alive = player;
-/*		if (vm->vs)
-		{
-			vm->vs->map[cursor->pc].wait_cycles_live = CYCLE_TO_WAIT;
-			vm->vs->map[cursor->pc].player_live = player;
-		}*/
 		if (vm->alive_fl)
 			print_live_msg(player);
 	}
+	cursor->last_live_cycle = vm->cur_cycle;
+	vm->lives_num++;
 	if (vm->stat_fl)
 		print_live(cursor, player, player_id);
 }

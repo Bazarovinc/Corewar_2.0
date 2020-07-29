@@ -44,7 +44,6 @@ static void free_cursor(t_vm *vm)
 		delete = cursor;
 		cursor = cursor->next;
 		free(delete);
-		//ft_memdel((void **)&delete);
 	}
 	vm->cursors = NULL;
 }

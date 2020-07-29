@@ -15,13 +15,13 @@
 static void	print_sti(t_cursor *cursor, int32_t r_id, int32_t addr_1,
 						int32_t addr_2)
 {
-	ft_printf("%s", cursor->player->color);
-	ft_printf("cursor of %10s executes operation: ", cursor->player->name);
+//	ft_printf("%s", cursor->player->color);
+//	ft_printf("cursor of %10s executes operation: ", cursor->player->name);
 	ft_printf("sti r%d %d %d", r_id, addr_1, addr_2);
-	ft_printf("\t\t| -> store to %d + %d = %d (with pc and mod %d)\n",
+	ft_printf("\t| -> store to %d + %d = %d (with pc and mod %d)\n",
 				addr_1, addr_2, addr_1 + addr_2,
 				cursor->pc + ((addr_1 + addr_2) % IDX_MOD));
-	ft_printf("%s", NC);
+//	ft_printf("%s", NC);
 }
 
 void				op_sti(t_vm *vm, t_cursor *cursor)
