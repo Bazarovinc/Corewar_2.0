@@ -109,6 +109,7 @@ typedef struct			s_cursor
 typedef struct			s_vm
 {
 	u_int8_t			arena[MEM_SIZE];
+	u_int8_t			cur_name[MEM_SIZE];
 	t_player			*players[MAX_PLAYERS];
 	int					players_num;
 	t_player			*last_alive;
