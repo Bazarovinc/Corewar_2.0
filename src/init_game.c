@@ -18,7 +18,7 @@ void			update_cycles_to_exec(t_cursor *cursor, t_vm *vm)
 	{
 		cursor->op_code = vm->arena[cursor->pc];
 		if (vm->arena[cursor->pc] >= 0x01 && vm->arena[cursor->pc] <= 0x10)
-			cursor->cycles_to_exec = op_tab[cursor->op_code - 1].cycles;
+				cursor->cycles_to_exec = op_tab[cursor->op_code - 1].cycles;
 	}
 	if (cursor->cycles_to_exec > 0)
 		cursor->cycles_to_exec--;
@@ -26,8 +26,6 @@ void			update_cycles_to_exec(t_cursor *cursor, t_vm *vm)
 
 void			init_cursor(t_player *player, t_cursor *cursor, int32_t pc)
 {
-	//int32_t		cursor_id;
-
 	cursor->carry = 0;
 	cursor->op_code = 0;
 	cursor->last_live_cycle = 0;
@@ -54,6 +52,8 @@ void			add_cursor(t_player *player, int32_t pc, t_vm *vm)
 		cursor->next = vm->cursors;
 		vm->cursors = cursor;
 	}
+	vm->cur_id++;
+	vm->cursors->id = vm->cur_id;
 	vm->cursors_num++;
 }
 void			init_cursors(t_vm *vm)

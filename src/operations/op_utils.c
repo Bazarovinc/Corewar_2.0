@@ -14,26 +14,22 @@
 
 int32_t		bytecode_to_int32(u_int8_t *arena, int32_t addr, int32_t size)
 {
-	int32_t	res;
-	int32_t	address;
-	char	sign;
+	char	dir[4];
 	int		i;
 
-	res = 0;
-	sign = (char)(arena[address_norming(addr)] & 0x80);
 	i = 0;
-	while (size)
+	while (i < size)
 	{
-		address = address_norming(addr + size - 1);
-		if (sign)
-			res += (arena[address] ^ 0xFF) << (i++ * 8);
-		else
-			res += arena[address] << (i++ * 8);
-		size--;
+		dir[size - i - 1] = arena[address_norming(addr + i)];
+		i++;
 	}
-	if (sign)
-		res = ~(res);
-	return (res);
+	if (size == 4)
+		return (*((int *)dir));
+	if (size == 2)
+		return (*((short *)dir));
+	if (size == 1)
+		return (dir[0]);
+	return (0);
 }
 
 void		int32_to_bytecode(u_int8_t *arena, int32_t addr, int32_t value,
@@ -54,9 +50,9 @@ void		int32_to_bytecode(u_int8_t *arena, int32_t addr, int32_t value,
 
 int32_t		get_op_arg(t_vm *vm, t_cursor *cursor, u_int8_t index, char mod)
 {
-	t_op		*op;
-	int32_t		value;
-	int32_t		addr;
+	t_op	*op;
+	int32_t	value;
+	int32_t	addr;
 
 	op = &op_tab[cursor->op_code - 1];
 	value = 0;
@@ -76,9 +72,9 @@ int32_t		get_op_arg(t_vm *vm, t_cursor *cursor, u_int8_t index, char mod)
 	return (value);
 }
 
-void	duplicate_cursor(t_cursor *cursor, int32_t addr, t_vm *vm)
+void		duplicate_cursor(t_cursor *cursor, int32_t addr, t_vm *vm)
 {
-	int			i;
+	int		i;
 
 	addr = address_norming(cursor->pc + addr);
 	add_cursor(cursor->player, addr, vm);

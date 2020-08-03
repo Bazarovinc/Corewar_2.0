@@ -12,7 +12,7 @@
 
 #include "../includes/vm.h"
 
-int		step_over_arg(int8_t arg_type, t_op *op)
+int				step_over_arg(int8_t arg_type, t_op *op)
 {
 	if (arg_type == REG_CODE)
 		return (1);
@@ -23,7 +23,7 @@ int		step_over_arg(int8_t arg_type, t_op *op)
 	return (0);
 }
 
-int32_t	calc_step(t_cursor *cursor, t_op *op)
+int32_t			calc_step(t_cursor *cursor, t_op *op)
 {
 	int32_t		i;
 	int32_t		step;

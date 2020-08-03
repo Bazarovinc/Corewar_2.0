@@ -27,6 +27,7 @@ static void		print_cycle_to_die(t_vm *vm)
 				  vm->cycles_to_die);
 		ft_printf("(%d) exceed NBR_LIVE(%d)\n", vm->lives_num, NBR_LIVE);
 	}
+	ft_printf("%s", NC);
 //	ft_printf("Press Enter\n");
 //	while (getchar() != '\n')
 //		;
@@ -63,9 +64,9 @@ static void		delete_cursor(t_cursor *cursor, t_vm *vm)
 		if (prev)
 			prev->next = cursor->next;
 	}
-//	if (vm->stat_fl)
-//		ft_printf("%sCursor of %s %sis dead%s\n", cursor->player->color,
-//				  cursor->player->name, RED, NC);
+	if (vm->stat_fl)
+		ft_printf("%sCursor %d of %s %sis dead%s\n",
+			cursor->player->color, cursor->id, cursor->player->name, RED, NC);
 	if (cursor)
 	{
 		cursor->player = NULL;
@@ -83,9 +84,9 @@ void			check_and_delete(t_vm *vm)
 
 	vm->checks_num++;
 	cursor = vm->cursors;
-//	if (vm->cycles_to_die <= 0 && vm->stat_fl)
-//		ft_printf("%sCycle to die = %d, All champions must die%s\n", RED,
-//				  vm->cycles_to_die, NC);
+	if (vm->cycles_to_die <= 0 && vm->stat_fl)
+		ft_printf("%sCycle to die = %d, All champions must die%s\n", RED,
+				  vm->cycles_to_die, NC);
 	while (cursor)
 	{
 		to_die = cursor;
@@ -97,8 +98,8 @@ void			check_and_delete(t_vm *vm)
 	if (vm->checks_num == MAX_CHECKS || vm->lives_num >= NBR_LIVE)
 	{
 		vm->cycles_to_die -= CYCLE_DELTA;
-//		if (vm->stat_fl)
-//			print_cycle_to_die(vm);
+		if (vm->stat_fl)
+			print_cycle_to_die(vm);
 		vm->checks_num = 0;
 	}
 	reset_lives_nums(vm);

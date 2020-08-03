@@ -22,6 +22,7 @@ t_vm		*init_vm(void)
 	vm->players_num = 0;
 	vm->last_alive = NULL;
 	vm->cursors = NULL;
+	vm->cur_id = 0;
 	vm->cursors_num = 0;
 	vm->lives_num = 0;
 	vm->cur_cycle = 1;

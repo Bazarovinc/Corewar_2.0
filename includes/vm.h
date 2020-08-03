@@ -93,6 +93,7 @@ typedef struct			s_vis
 
 typedef struct			s_cursor
 {
+	int					id;
 	int					carry;
 	unsigned char		op_code;
 	size_t				last_live_cycle;
@@ -113,6 +114,7 @@ typedef struct			s_vm
 	t_player			*last_alive;
 	t_cursor			*cursors;
 	size_t				cursors_num;
+	int					cur_id;
 	size_t				lives_num;
 	size_t				cur_cycle;
 	int					cycles_to_die;
@@ -142,12 +144,13 @@ typedef struct			s_op
 
 void					print_introducing(t_vm *vm);
 void					print_usage(t_vm *vm);
-//void					print_error(char *error, t_vm *vm);
 void					print_dump(u_int8_t *arena, t_vm *vm);
 void					print_winner(t_vm *vm);
 int						file_is_cor(char *str, t_vm *vm);
 void					parser(t_vm *vm, char **argv);
 int						ft_strtoint(char *str);
+void					parse_args_types(t_cursor *cursor, t_op *op, t_vm *vm);
+int						check_args(t_cursor *cursor, t_op *op, t_vm *vm);
 void					parse_champion(int fd, t_player *player, t_vm *vm);
 unsigned char			*read_str(int fd, size_t len, t_vm *vm);
 void					*add_player(char *filename, int id, t_vm *vm);

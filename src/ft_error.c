@@ -78,7 +78,7 @@ static int	colour_check(char *str)
 
 void		error_func(char *clr, char *str, t_vm *vm)
 {
-	size_t len;
+	size_t	len;
 
 	if (clr && colour_check(clr))
 		colour_on(clr[0], clr[1]);

@@ -15,15 +15,16 @@
 static void	print_lldi(t_cursor *cursor, int32_t addr_1, int32_t addr_2,
 						int32_t r_id)
 {
-//	ft_printf("%s", cursor->player->color);
-//	ft_printf("cursor of %10s executes operation: ", cursor->player->name);
+	ft_printf("%s", cursor->player->color);
+	ft_printf("cursor %4d of %10s executes:\t", cursor->id,
+		cursor->player->name);
 	ft_printf("lldi %d %d r%d", addr_1, addr_2, r_id);
-	ft_printf("\t| -> load from %d + %d = %d (with pc %d)\n",
+	ft_printf("\t -> load from %d + %d = %d (with pc %d)\n",
 			addr_1, addr_2, addr_1 + addr_2, cursor->pc + (addr_1 + addr_2));
-//	ft_printf("%s", NC);
+	ft_printf("%s", NC);
 }
 
-void				op_lldi(t_vm *vm, t_cursor *cursor)
+void		op_lldi(t_vm *vm, t_cursor *cursor)
 {
 	int32_t	addr_1;
 	int32_t	addr_2;

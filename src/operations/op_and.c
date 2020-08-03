@@ -15,13 +15,14 @@
 static void	print_and(t_cursor *cursor, int32_t v1, int32_t v2,
 						int32_t r_id)
 {
-//	ft_printf("%s", cursor->player->color);
-//	ft_printf("cursor of %10s executes operation: ", cursor->player->name);
+	ft_printf("%s", cursor->player->color);
+	ft_printf("cursor %4d of %10s executes:\t", cursor->id,
+		cursor->player->name);
 	ft_printf("and %d %d r%d\n", v1, v2, r_id);
-//	ft_printf("%s", NC);
+	ft_printf("%s", NC);
 }
 
-void				op_and(t_vm *vm, t_cursor *cursor)
+void		op_and(t_vm *vm, t_cursor *cursor)
 {
 	int32_t	value_1;
 	int32_t	value_2;

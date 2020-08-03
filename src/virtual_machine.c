@@ -12,15 +12,7 @@
 
 #include "../includes/vm.h"
 
-static void		update_cursor(t_cursor *cursor)
-{
-	cursor->pc += cursor->step;
-	cursor->pc = address_norming(cursor->pc);
-	cursor->step = 0;
-	ft_bzero(cursor->args_types, 3);
-}
-
-static int		check_args(t_cursor *cursor, t_op *op, t_vm *vm)
+int		check_args(t_cursor *cursor, t_op *op, t_vm *vm)
 {
 	int32_t		i;
 	int32_t		step;
@@ -45,7 +37,7 @@ static int		check_args(t_cursor *cursor, t_op *op, t_vm *vm)
 	return (1);
 }
 
-static void 	parse_args_types(t_cursor *cursor, t_op *op, t_vm *vm)
+void 	parse_args_types(t_cursor *cursor, t_op *op, t_vm *vm)
 {
 	int8_t		args_types_code;
 
@@ -63,6 +55,14 @@ static void 	parse_args_types(t_cursor *cursor, t_op *op, t_vm *vm)
 		cursor->args_types[0] = op->args_types[0];
 }
 
+static void		update_cursor(t_cursor *cursor, t_vm *vm)
+{
+	cursor->pc += cursor->step;
+	cursor->pc = address_norming(cursor->pc);
+	cursor->step = 0;
+	ft_bzero(cursor->args_types, 3);
+}
+
 static void		do_operation(t_cursor *cursor, t_vm *vm)
 {
 	t_op *op;
@@ -70,7 +70,6 @@ static void		do_operation(t_cursor *cursor, t_vm *vm)
 	update_cycles_to_exec(cursor, vm);
 	if (cursor->cycles_to_exec == 0)
 	{
-		cursor->op_code = vm->arena[cursor->pc];
 		op = NULL;
 		if (cursor->op_code >= 0x01 && cursor->op_code <= 0x10)
 		{
@@ -83,7 +82,7 @@ static void		do_operation(t_cursor *cursor, t_vm *vm)
 		}
 		else
 			cursor->step = 1;
-		update_cursor(cursor);
+		update_cursor(cursor, vm);
 	}
 }
 
@@ -93,8 +92,6 @@ void			run_vm(t_vm *vm)
 
 	while (vm->cursors_num)
 	{
-//		ft_printf("curr cycle %d\t cycle_to_die %d\t cursor num %d\tcycles after check %d\t lives %d\n",
-//				vm->cur_cycle, vm->cycles_to_die, vm->cursors_num, vm->cycles_after_check, vm->lives_num);
 //		init_drow();
 		if (vm->dump_fl == vm->cur_cycle)
 			print_dump(vm->arena, vm);
@@ -112,6 +109,4 @@ void			run_vm(t_vm *vm)
 		vm->cycles_after_check++;
 	}
 //	stop_drow();
-//	if (vm->stat_fl)
-//		ft_printf("\n\t\tNumber of cycles %d\t\n\n", vm->cur_cycle);
 }

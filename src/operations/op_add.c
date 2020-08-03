@@ -15,13 +15,14 @@
 static void	print_add(t_cursor *cursor, int32_t r1_id, int32_t r2_id,
                     int32_t r3_id)
 {
-//	ft_printf("%s", cursor->player->color);
-//	ft_printf("cursor of %10s executes operation: ", cursor->player->name);
+	ft_printf("%s", cursor->player->color);
+	ft_printf("cursor %4d of %10s executes:\t",
+		cursor->id, cursor->player->name);
 	ft_printf("add r%d r%d r%d\n", r1_id, r2_id, r3_id);
-//	ft_printf("%s", NC);
+	ft_printf("%s", NC);
 }
 
-void    op_add(t_vm *vm, t_cursor *cursor)
+void		op_add(t_vm *vm, t_cursor *cursor)
 {
     int32_t	r1_id;
     int32_t	r2_id;

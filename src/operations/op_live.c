@@ -12,20 +12,19 @@
 
 #include "../../includes/vm.h"
 
-static void			print_live(t_cursor *cursor, t_player *player, int id)
+static void		print_live(t_cursor *cursor, t_player *player, int id)
 {
-//	ft_printf("%s", cursor->player->color);
-//	ft_printf("cursor of %10s executes operation: ", cursor->player->name);
+	ft_printf("%s", cursor->player->color);
+	ft_printf("cursor %4d of %10s executes:\t", cursor->id,
+		cursor->player->name);
 	if (player)
-//		ft_printf("live %d (%s)\n", id, player->name);
-		ft_printf("live %d\n", id);
+		ft_printf("live %d (%s)\n", id, player->name);
 	else
-//		ft_printf("live %d (NULL)\n", id);
-		ft_printf("live %d\n", id);
-//	ft_printf("%s", NC);
+		ft_printf("live %d (NULL)\n", id);
+	ft_printf("%s", NC);
 }
 
-void	print_live_msg(t_player *player)
+void			print_live_msg(t_player *player)
 {
 	ft_printf("%s", player->color);
 	ft_printf("Player %d (%s) is said to be alive\n",
@@ -33,9 +32,9 @@ void	print_live_msg(t_player *player)
 	ft_printf("%s", NC);
 }
 
-void				op_live(t_vm *vm, t_cursor *cursor)
+void			op_live(t_vm *vm, t_cursor *cursor)
 {
-	int		player_id;
+	int			player_id;
 	t_player	*player;
 
 	player = NULL;
