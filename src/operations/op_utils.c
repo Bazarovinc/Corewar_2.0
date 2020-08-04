@@ -12,6 +12,20 @@
 
 #include "../../includes/vm.h"
 
+void 		fill_cor_name(int l, int32_t addr, t_player *player, t_vm *vm)
+{
+	int8_t	i;
+	int32_t	address;
+
+	i = 0;
+	while (i < l)
+	{
+		address = address_norming(addr + i);
+		vm->cur_name[address] = player->id;
+		i++;
+	}
+}
+
 int32_t		bytecode_to_int32(u_int8_t *arena, int32_t addr, int32_t size)
 {
 	char	dir[4];

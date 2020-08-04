@@ -169,7 +169,8 @@ void					check_and_delete(t_vm *vm);
 int8_t					get_byte(t_vm *vm, int32_t pc, int32_t step);
 void					free_vm(t_vm *vm);
 void					error_func(char *clr, char *str, t_vm *vm);
-
+void 					fill_cor_name(int l, int32_t addr, t_player *player,
+							t_vm *vm);
 /*
 ** Operations
 */

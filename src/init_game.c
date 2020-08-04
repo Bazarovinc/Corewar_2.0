@@ -84,6 +84,7 @@ void			init_arena(t_vm *vm)
 			ft_memcpy(&(vm->arena[pc]), vm->players[i]->code,
 				(vm->players[i]->code_size));
 			vm->players[i]->pc = pc;
+			fill_cor_name(vm->players[i]->code_size, pc, vm->players[i], vm);
 			pc += MEM_SIZE / vm->players_num;
 		}
 		i++;

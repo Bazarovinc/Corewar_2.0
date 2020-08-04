@@ -29,6 +29,7 @@ static void	arg_ind_st(t_cursor *cursor, int32_t value, int32_t r_id, t_vm *vm)
 			cursor->pc + cursor->step, IND_SIZE);
 	int32_to_bytecode(vm->arena, cursor->pc + (addr % IDX_MOD),
 					  value, DIR_SIZE);
+	fill_cor_name(4, cursor->pc + (addr % IDX_MOD), cursor->player, vm);
 	if (vm->stat_fl)
 	{
 		ft_printf("%s", cursor->player->color);

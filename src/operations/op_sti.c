@@ -40,6 +40,8 @@ void		op_sti(t_vm *vm, t_cursor *cursor)
 	addr_2 = get_op_arg(vm, cursor, 3, true);
 	int32_to_bytecode(vm->arena,
 			(cursor->pc + ((addr_1 + addr_2) % IDX_MOD)), value, DIR_SIZE);
+	fill_cor_name(4, cursor->pc + ((addr_1 + addr_2) % IDX_MOD),
+		cursor->player, vm);
 	if (vm->stat_fl)
 		print_sti(cursor, r_id, addr_1, addr_2);
 }
