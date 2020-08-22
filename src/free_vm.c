@@ -12,7 +12,7 @@
 
 #include "../includes/vm.h"
 
-static void free_players(t_vm *vm)
+static void	free_players(t_vm *vm)
 {
 	int i;
 
@@ -33,7 +33,7 @@ static void free_players(t_vm *vm)
 	}
 }
 
-static void free_cursor(t_vm *vm)
+static void	free_cursor(t_vm *vm)
 {
 	t_cursor	*cursor;
 	t_cursor	*delete;

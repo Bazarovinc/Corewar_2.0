@@ -12,7 +12,7 @@
 
 #include "../includes/vm.h"
 
-int		check_args(t_cursor *cursor, t_op *op, t_vm *vm)
+int			check_args(t_cursor *cursor, t_op *op, t_vm *vm)
 {
 	int32_t		i;
 	int32_t		step;
@@ -23,7 +23,7 @@ int		check_args(t_cursor *cursor, t_op *op, t_vm *vm)
 	while (i < op->args_num)
 	{
 		if (!(cursor->args_types[i] &&
-				(arg_code[cursor->args_types[i] - 1] & op->args_types[i])))
+					(arg_code[cursor->args_types[i] - 1] & op->args_types[i])))
 			return (0);
 		if (cursor->args_types[i] == REG_CODE)
 		{
@@ -37,7 +37,7 @@ int		check_args(t_cursor *cursor, t_op *op, t_vm *vm)
 	return (1);
 }
 
-void 	parse_args_types(t_cursor *cursor, t_op *op, t_vm *vm)
+void		parse_args_types(t_cursor *cursor, t_op *op, t_vm *vm)
 {
 	int8_t		args_types_code;
 
@@ -55,15 +55,17 @@ void 	parse_args_types(t_cursor *cursor, t_op *op, t_vm *vm)
 		cursor->args_types[0] = op->args_types[0];
 }
 
-static void		update_cursor(t_cursor *cursor, t_vm *vm)
+static void	update_cursor(t_cursor *cursor, t_vm *vm)
 {
 	cursor->pc += cursor->step;
 	cursor->pc = address_norming(cursor->pc);
 	cursor->step = 0;
 	ft_bzero(cursor->args_types, 3);
+	return ;
+	cursor = vm->cursors;
 }
 
-static void		do_operation(t_cursor *cursor, t_vm *vm)
+static void	do_operation(t_cursor *cursor, t_vm *vm)
 {
 	t_op *op;
 
@@ -86,16 +88,17 @@ static void		do_operation(t_cursor *cursor, t_vm *vm)
 	}
 }
 
-void			run_vm(t_vm *vm)
+void		run_vm(t_vm *vm)
 {
 	t_cursor	*cursor;
 
+	if (vm->vis_fl == 1)
+		start_drow(vm);
 	while (vm->cursors_num)
 	{
-//		init_drow();
 		if (vm->dump_fl == vm->cur_cycle)
 			print_dump(vm->arena, vm);
-//		drow_arena(vm);
+		ft_go_drow(vm);
 		cursor = vm->cursors;
 		while (cursor)
 		{
@@ -108,5 +111,5 @@ void			run_vm(t_vm *vm)
 		vm->cur_cycle++;
 		vm->cycles_after_check++;
 	}
-//	stop_drow();
+	ft_end_drow(vm);
 }

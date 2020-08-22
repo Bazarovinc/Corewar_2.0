@@ -20,7 +20,7 @@ static void	print_ldi(t_cursor *cursor, int32_t addr_1, int32_t addr_2,
 		cursor->player->name);
 	ft_printf("ldi %d %d r%d", addr_1, addr_2, reg_id);
 	ft_printf("\t -> load from %d + %d = %d (with pc and mod %d)\n",
-		addr_1, addr_2,	addr_1 + addr_2,
+		addr_1, addr_2, addr_1 + addr_2,
 		cursor->pc + (addr_1 + addr_2) % IDX_MOD);
 	ft_printf("%s", NC);
 }

@@ -12,9 +12,9 @@
 
 #include "../../includes/vm.h"
 
-void 		fill_cor_name(int l, int32_t addr, t_player *player, t_vm *vm)
+void		fill_cor_name(int l, int32_t addr, t_player *player, t_vm *vm)
 {
-	int8_t	i;
+	int32_t	i;
 	int32_t	address;
 
 	i = 0;
@@ -80,7 +80,7 @@ int32_t		get_op_arg(t_vm *vm, t_cursor *cursor, u_int8_t index, char mod)
 		addr = bytecode_to_int32(vm->arena,
 					cursor->pc + cursor->step, IND_SIZE);
 		value = bytecode_to_int32(vm->arena,
-					cursor->pc + (mod ? (addr % IDX_MOD) : addr),	DIR_SIZE);
+					cursor->pc + (mod ? (addr % IDX_MOD) : addr), DIR_SIZE);
 	}
 	cursor->step += step_over_arg(cursor->args_types[index - 1], op);
 	return (value);

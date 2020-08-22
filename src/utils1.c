@@ -12,12 +12,12 @@
 
 #include "../includes/vm.h"
 
-int8_t	get_byte(t_vm *vm, int32_t pc, int32_t step)
+int8_t		get_byte(t_vm *vm, int32_t pc, int32_t step)
 {
 	return (vm->arena[address_norming(pc + step)]);
 }
 
-int32_t				address_norming(int32_t pntr)
+int32_t		address_norming(int32_t pntr)
 {
 	return ((pntr < 0) ? ((pntr % MEM_SIZE) + MEM_SIZE) :
 			(pntr % MEM_SIZE));
@@ -25,13 +25,13 @@ int32_t				address_norming(int32_t pntr)
 
 static int	is_positive_number(char *string)
 {
-	int	l;
-	char 	*str;
+	int		l;
+	char	*str;
 
 	str = string;
 	l = ft_strlen(str);
 	if (l <= 11 && ((*str >= '0' && *str <= '9') ||
-					(*str == '+' && *(str + 1) != '\0')))
+				(*str == '+' && *(str + 1) != '\0')))
 	{
 		str++;
 		while (*str)
@@ -60,18 +60,18 @@ int			ft_strtoint(char *str)
 		while (*s)
 			num = num * 10 + (*s++ - '0');
 		if (num >= 0 && num <= 2147483647)
-			return ((int) num);
+			return ((int)num);
 	}
 	else
 		return (-1);
-	return(0);
+	return (0);
 }
 
 int			file_is_cor(char *str, t_vm *vm)
 {
-	char 	*ext;
+	char	*ext;
 
-	ext = &str[strlen(str) - 4];
+	ext = &str[ft_strlen(str) - 4];
 	if (!ft_strcmp(ext, ".cor"))
 		return (1);
 	else

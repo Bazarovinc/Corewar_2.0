@@ -16,7 +16,7 @@ static void	print_st(t_cursor *cursor, int32_t r_id, int32_t addr)
 {
 	ft_printf("%s", cursor->player->color);
 	ft_printf("cursor %4d of %10s executes:\t", cursor->id,
-		cursor->player->name);
+			cursor->player->name);
 	ft_printf("st r%d r%d\n", r_id, addr);
 	ft_printf("%s", NC);
 }
@@ -28,13 +28,13 @@ static void	arg_ind_st(t_cursor *cursor, int32_t value, int32_t r_id, t_vm *vm)
 	addr = bytecode_to_int32(vm->arena,
 			cursor->pc + cursor->step, IND_SIZE);
 	int32_to_bytecode(vm->arena, cursor->pc + (addr % IDX_MOD),
-					  value, DIR_SIZE);
+			value, DIR_SIZE);
 	fill_cor_name(4, cursor->pc + (addr % IDX_MOD), cursor->player, vm);
 	if (vm->stat_fl)
 	{
 		ft_printf("%s", cursor->player->color);
 		ft_printf("cursor %4d of %10s executes:\t", cursor->id,
-				  cursor->player->name);
+				cursor->player->name);
 		ft_printf("st r%d %d\n", r_id, addr);
 		ft_printf("%s", NC);
 	}

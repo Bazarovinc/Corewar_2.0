@@ -12,7 +12,7 @@
 
 #include "../includes/vm.h"
 
-static t_player	*init_player(t_vm  *vm)
+static t_player	*init_player(t_vm *vm)
 {
 	t_player	*player;
 
@@ -31,7 +31,7 @@ static t_player	*init_player(t_vm  *vm)
 	return (player);
 }
 
-static void	put_player(t_player *player, t_vm *vm)
+static void		put_player(t_player *player, t_vm *vm)
 {
 	int		i;
 
@@ -42,10 +42,10 @@ static void	put_player(t_player *player, t_vm *vm)
 	vm->players[i] = player;
 }
 
-void		*add_player(char *filename, int id, t_vm *vm)
+void			*add_player(char *filename, int id, t_vm *vm)
 {
 	t_player	*player;
-	t_player 	*tmp;
+	t_player	*tmp;
 	int			fd;
 
 	if ((fd = open(filename, O_RDONLY)) < 0)
@@ -67,5 +67,5 @@ void		*add_player(char *filename, int id, t_vm *vm)
 	else
 		put_player(player, vm);
 	vm->players_num++;
-	return(0);
+	return (0);
 }

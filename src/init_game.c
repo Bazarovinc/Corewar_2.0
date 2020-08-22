@@ -18,7 +18,7 @@ void			update_cycles_to_exec(t_cursor *cursor, t_vm *vm)
 	{
 		cursor->op_code = vm->arena[cursor->pc];
 		if (vm->arena[cursor->pc] >= 0x01 && vm->arena[cursor->pc] <= 0x10)
-				cursor->cycles_to_exec = op_tab[cursor->op_code - 1].cycles;
+			cursor->cycles_to_exec = op_tab[cursor->op_code - 1].cycles;
 	}
 	if (cursor->cycles_to_exec > 0)
 		cursor->cycles_to_exec--;
@@ -56,6 +56,7 @@ void			add_cursor(t_player *player, int32_t pc, t_vm *vm)
 	vm->cursors->id = vm->cur_id;
 	vm->cursors_num++;
 }
+
 void			init_cursors(t_vm *vm)
 {
 	int			i;
@@ -82,7 +83,7 @@ void			init_arena(t_vm *vm)
 		if (vm->players[i])
 		{
 			ft_memcpy(&(vm->arena[pc]), vm->players[i]->code,
-				(vm->players[i]->code_size));
+					(vm->players[i]->code_size));
 			vm->players[i]->pc = pc;
 			fill_cor_name(vm->players[i]->code_size, pc, vm->players[i], vm);
 			pc += MEM_SIZE / vm->players_num;

@@ -45,7 +45,7 @@ static void	parse_dump_flag(char **argv, t_vm *vm)
 		error_func("r-", "ERROR: Wrong argument for -dump", vm);
 }
 
-static int		parse_n_flag(char **argv, t_vm *vm)
+static int	parse_n_flag(char **argv, t_vm *vm)
 {
 	int id;
 
@@ -60,7 +60,7 @@ static int		parse_n_flag(char **argv, t_vm *vm)
 	return (1);
 }
 
-void 	parser(t_vm *vm, char **argv)
+void		parser(t_vm *vm, char **argv)
 {
 	argv++;
 	while (*argv)

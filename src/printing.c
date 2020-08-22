@@ -12,7 +12,7 @@
 
 #include "../includes/vm.h"
 
-void			print_introducing(t_vm *vm)
+void	print_introducing(t_vm *vm)
 {
 	t_player	*player;
 	int			i;
@@ -29,7 +29,7 @@ void			print_introducing(t_vm *vm)
 	}
 }
 
-void			print_dump(u_int8_t *arena, t_vm *vm)
+void	print_dump(u_int8_t *arena, t_vm *vm)
 {
 	int			i;
 	int			j;
@@ -50,16 +50,16 @@ void			print_dump(u_int8_t *arena, t_vm *vm)
 	error_func("r-", "Aborting execution", vm);
 }
 
-void		print_winner(t_vm *vm)
+void	print_winner(t_vm *vm)
 {
 	ft_printf("Contestant %d, \"%s\", has won !\n", \
-	vm->last_alive->id, vm->last_alive->name);
+			vm->last_alive->id, vm->last_alive->name);
 }
 
-void		print_usage(t_vm *vm)
+void	print_usage(t_vm *vm)
 {
 	ft_printf("Usage: ./corewar [ -dump <int num> ] "
-			  "[-n <int num>] <champion.cor> <...>\n");
+			"[-n <int num>] <champion.cor> <...>\n");
 	free_vm(vm);
 	exit(0);
 }

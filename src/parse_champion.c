@@ -21,7 +21,7 @@ unsigned char	*read_str(int fd, size_t len, t_vm *vm)
 	size = read(fd, tmp, len);
 	if ((int)size == -1)
 	{
-		free (tmp);
+		free(tmp);
 		error_func("r-", "ERROR: Can't open champion file", vm);
 	}
 	if (size < len)
@@ -34,7 +34,7 @@ unsigned char	*read_str(int fd, size_t len, t_vm *vm)
 
 static void		check_zero(int fd, t_vm *vm)
 {
-	unsigned char   *str;
+	unsigned char	*str;
 
 	str = read_str(fd, 4, vm);
 	if (!(str[0] == 0 && str[1] == 0 && str[2] == 0 && str[3] == 0))
@@ -43,7 +43,8 @@ static void		check_zero(int fd, t_vm *vm)
 		error_func("r-", "ERROR: No null control bytes", vm);
 	}
 }
-static int 			parse_code_size(int fd, t_vm *vm)
+
+static int		parse_code_size(int fd, t_vm *vm)
 {
 	unsigned char	*str;
 	int32_t			res;
@@ -56,7 +57,7 @@ static int 			parse_code_size(int fd, t_vm *vm)
 	return (res);
 }
 
-void				parse_champion(int fd, t_player *player, t_vm *vm)
+void			parse_champion(int fd, t_player *player, t_vm *vm)
 {
 	unsigned char	*str;
 

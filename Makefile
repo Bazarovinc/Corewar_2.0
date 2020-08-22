@@ -41,7 +41,10 @@ VM_SRC_LIST = check_to_die.c corewar.c free_vm.c ft_error.c \
 			init_game.c parse_champion.c parser.c player.c \
 			printing.c step.c utils1.c \
 			virtual_machine.c \
-			ft_drow.c
+			ft_drow.c ft_start_stop_drow.c ft_drow_staf.c \
+			ft_color_select.c ft_vm_drow.c \
+			ft_car.c ft_car_no.c ft_frame.c \
+			ft_key.c ft_logo.c ft_win.c
 VM_SRCS = $(addprefix $(VM_SRC_DIR), $(VM_SRC_LIST))
 VM_OP_SRC_DIR = $(VM_SRC_DIR)operations/
 VM_OP_SRC_LIST = op_add.c op_aff.c op_and.c op_fork.c op_ld.c op_ldi.c\

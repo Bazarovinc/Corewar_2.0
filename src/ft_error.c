@@ -68,8 +68,8 @@ static int	colour_check(char *str)
 	c = *(str + 0);
 	s = *(str + 1);
 	if ((c == 'r' || c == 'g' || c == 'y'
-		 || c == 'b' || c == 'm' || c == 'c'
-		 || c == 'w') && (s == '+' || s == '-'))
+		|| c == 'b' || c == 'm' || c == 'c'
+		|| c == 'w') && (s == '+' || s == '-'))
 	{
 		return (1);
 	}
