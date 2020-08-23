@@ -30,7 +30,7 @@ int32_t			calc_step(t_cursor *cursor, t_op *op)
 
 	i = 0;
 	step = (op->args_types_code) ? 2 : 1;
-	while (i < op_tab[cursor->op_code - 1].args_num)
+	while (i < g_op_tab[cursor->op_code - 1].args_num)
 	{
 		step += step_over_arg(cursor->args_types[i], op);
 		i++;

@@ -3,9 +3,9 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ddamaris <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ddamaris <ddamaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/24 14:46:21 by ddamaris          #+#    #+#             */
+/*   Created: 2019/04/25 15:19:33 by ddamaris          #+#    #+#             */
 /*   Updated: 2020/07/23 13:51:15 by ctelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -99,6 +99,6 @@ int				print_digit_u(t_struct *f_lst, unsigned long long d);
 int				print_if_hash(t_struct *f_lst, unsigned long long d);
 char			*round_f(char *s);
 char			*str_transform(char *src, int l);
-int             digit_distribution(t_struct *f_lst);
+int				digit_distribution(t_struct *f_lst);
 
 #endif

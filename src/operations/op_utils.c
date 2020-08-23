@@ -68,7 +68,7 @@ int32_t		get_op_arg(t_vm *vm, t_cursor *cursor, u_int8_t index, char mod)
 	int32_t	value;
 	int32_t	addr;
 
-	op = &op_tab[cursor->op_code - 1];
+	op = &g_op_tab[cursor->op_code - 1];
 	value = 0;
 	if (cursor->args_types[index - 1] == REG_CODE)
 		value = cursor->reg[get_byte(vm, cursor->pc, cursor->step) - 1];

@@ -18,7 +18,7 @@ void			update_cycles_to_exec(t_cursor *cursor, t_vm *vm)
 	{
 		cursor->op_code = vm->arena[cursor->pc];
 		if (vm->arena[cursor->pc] >= 0x01 && vm->arena[cursor->pc] <= 0x10)
-			cursor->cycles_to_exec = op_tab[cursor->op_code - 1].cycles;
+			cursor->cycles_to_exec = g_op_tab[cursor->op_code - 1].cycles;
 	}
 	if (cursor->cycles_to_exec > 0)
 		cursor->cycles_to_exec--;

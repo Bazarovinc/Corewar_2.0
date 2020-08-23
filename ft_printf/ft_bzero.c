@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ddamaris <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ddamaris <ddamaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/06 21:46:32 by ddamaris          #+#    #+#             */
+/*   Created: 2019/04/25 15:19:33 by ddamaris          #+#    #+#             */
 /*   Updated: 2020/07/23 13:51:15 by ctelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
 
 void	ft_bzero(void *s, size_t n)
 {

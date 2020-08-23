@@ -23,7 +23,7 @@ int			check_args(t_cursor *cursor, t_op *op, t_vm *vm)
 	while (i < op->args_num)
 	{
 		if (!(cursor->args_types[i] &&
-					(arg_code[cursor->args_types[i] - 1] & op->args_types[i])))
+				(g_arg_code[cursor->args_types[i] - 1] & op->args_types[i])))
 			return (0);
 		if (cursor->args_types[i] == REG_CODE)
 		{
@@ -75,7 +75,7 @@ static void	do_operation(t_cursor *cursor, t_vm *vm)
 		op = NULL;
 		if (cursor->op_code >= 0x01 && cursor->op_code <= 0x10)
 		{
-			op = &op_tab[cursor->op_code - 1];
+			op = &g_op_tab[cursor->op_code - 1];
 			parse_args_types(cursor, op, vm);
 			if (check_args(cursor, op, vm))
 				op->func(vm, cursor);
