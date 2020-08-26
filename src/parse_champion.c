@@ -42,6 +42,7 @@ static void		check_zero(int fd, t_vm *vm)
 		free(str);
 		error_func("r-", "ERROR: No null control bytes", vm);
 	}
+	free(str);
 }
 
 static int		parse_code_size(int fd, t_vm *vm)
@@ -54,6 +55,7 @@ static int		parse_code_size(int fd, t_vm *vm)
 	res = str[3] + str[2] * 256 + str[1] * 65536 + str[0] * 16777216;
 	if (res > CHAMP_MAX_SIZE)
 		error_func("r-", "ERROR: Invalid code size", vm);
+	free(str);
 	return (res);
 }
 
@@ -73,4 +75,5 @@ void			parse_champion(int fd, t_player *player, t_vm *vm)
 	player->comment = read_str(fd, COMMENT_LENGTH, vm);
 	check_zero(fd, vm);
 	player->code = read_str(fd, player->code_size, vm);
+	free(str);
 }

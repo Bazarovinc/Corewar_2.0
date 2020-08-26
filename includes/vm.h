@@ -81,7 +81,7 @@ typedef struct				s_vis
 	int						ign;
 	int						last;
 	int						step;
-	int						cars_play[MAX_PLAYERS + 1];
+	int						cars_play[MAX_PLAYERS];
 	u_int8_t				cur_name[MEM_SIZE];
 	u_int8_t				cars[MEM_SIZE];
 	u_int8_t				old_cars[MEM_SIZE];
@@ -139,7 +139,7 @@ typedef struct				s_op
 }							t_op;
 
 void						print_introducing(t_vm *vm);
-void						print_usage(t_vm *vm);
+void						print_usage(void);
 void						print_dump(u_int8_t *arena, t_vm *vm);
 void						print_winner(t_vm *vm);
 int							file_is_cor(char *str, t_vm *vm);

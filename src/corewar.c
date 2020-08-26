@@ -53,6 +53,6 @@ int			main(int argc, char **argv)
 		free_vm(vm);
 	}
 	else
-		print_usage(vm);
+		print_usage();
 	return (0);
 }

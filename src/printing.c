@@ -56,10 +56,9 @@ void	print_winner(t_vm *vm)
 			vm->last_alive->id, vm->last_alive->name);
 }
 
-void	print_usage(t_vm *vm)
+void	print_usage(void)
 {
 	ft_printf("Usage: ./corewar [ -dump <int num> ] "
 			"[-n <int num>] <champion.cor> <...>\n");
-	free_vm(vm);
 	exit(0);
 }
