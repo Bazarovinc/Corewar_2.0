@@ -6,14 +6,14 @@
 #    By: ctelma <ctelma@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/26 14:45:43 by ctelma            #+#    #+#              #
-#    Updated: 2020/09/08 14:28:45 by ctelma           ###   ########.fr        #
+#    Updated: 2020/09/08 14:36:23 by ctelma           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
 CC = gcc
-FLAGS = -Wall  -Wextra
+FLAGS = -Wall -Werror -Wextra
 INCLUDES = -I$(HEADERS_DIRECTORY) -I$(LIBFT_HEADERS_DIRECTORY)
 
 # LIBFT
@@ -64,7 +64,7 @@ HEADERS = $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 
 SOURCES_DIRECTORY = ./
 SOURCES_LIST = ft_is_flag.c ft_printf.c ft_work_out.c long_math.c \
-		work_out_char.c work_out_d.c work_out_uxo.c \
+		work_out_char.c work_out_d.c work_out_uxo.c ft_strlen_1.c\
 		str_longmath.c work_out_f.c ft_strnew_1.c
 
 
