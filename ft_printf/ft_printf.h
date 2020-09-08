@@ -6,7 +6,7 @@
 /*   By: ddamaris <ddamaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 15:19:33 by ddamaris          #+#    #+#             */
-/*   Updated: 2020/07/23 13:51:15 by ctelma           ###   ########.fr       */
+/*   Updated: 2020/09/08 14:32:39 by ctelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <unistd.h>
 # include <math.h>
 # include <float.h>
+# include "../libft/inc/libft.h"
 
 # define MAG "\033[0;35m"
 # define CYAN "\033[0;36m"
@@ -57,11 +58,8 @@ typedef	struct	s_f_struct
 }				t_f_struct;
 
 int				ft_printf(const char *format, ...);
-size_t			ft_strlen(const char *s);
 size_t			ft_strlen_k(const char *s);
-char			*ft_strnew(size_t size);
 char			*ft_increase_str(char *s);
-void			ft_bzero(void *s, size_t n);
 int				ft_prn_str(const char *s, int fd);
 int				ft_parse(const char *str, t_struct *f_lst);
 int				ft_work_out(t_struct *f_lst);

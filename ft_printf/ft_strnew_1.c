@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ddamaris <ddamaris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 15:19:33 by ddamaris          #+#    #+#             */
-/*   Updated: 2020/09/08 14:12:32 by ctelma           ###   ########.fr       */
+/*   Updated: 2020/09/08 14:22:48 by ctelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-size_t	ft_strlen_k(const char *s)
+char	*ft_increase_str(char *s)
 {
-	size_t	i;
-	int		res;
+	char	*dst;
+	int		i;
+	int		l;
 
-	res = 0;
+	l = ft_strlen(s) + 1;
+	dst = (char *)malloc(sizeof(char) * (l + 1));
+	dst[0] = '1';
 	i = 0;
-	while (s[i])
-	{
-		if (s[i] <= 31 && s[i] > 0)
-			res += 3;
-		else
-			res++;
-		i++;
-	}
-	return (res);
+	while (++i < l)
+		dst[i] = s[i - 1];
+	free(s);
+	return (dst);
 }
