@@ -58,7 +58,8 @@ void	ft_start_color(t_vm *vm, int pose, int i, int j)
 	}
 	else
 		ft_uncar(i, j);
-	if (vm->cur_name[pose] != vm->vis.cur_name[pose])
+	if (vm->cur_name[pose] != vm->vis.cur_name[pose] ||
+		vm->vis.old_arena[pose] != vm->arena[pose])
 		is_curs = 2;
 	playerno = vm->cur_name[pose];
 	color_select(is_curs, playerno);

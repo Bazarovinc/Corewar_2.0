@@ -85,6 +85,7 @@ typedef struct				s_vis
 	u_int8_t				cur_name[MEM_SIZE];
 	u_int8_t				cars[MEM_SIZE];
 	u_int8_t				old_cars[MEM_SIZE];
+	u_int8_t				old_arena[MEM_SIZE];
 }							t_vis;
 
 typedef struct				s_cursor

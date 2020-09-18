@@ -25,6 +25,8 @@ int		find_ctd(t_vm *vm)
 	{
 		if (master[i] != slave[i])
 			return (1);
+		if (vm->vis.old_arena[i] != vm->arena[i])
+			return (1);
 		i++;
 	}
 	return (0);

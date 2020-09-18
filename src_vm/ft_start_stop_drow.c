@@ -35,6 +35,7 @@ void	rebild(t_vm *vm)
 	i = 0;
 	while (i < MEM_SIZE)
 	{
+		vm->vis.old_arena[i] = vm->arena[i];
 		vm->vis.cur_name[i] = vm->cur_name[i];
 		i++;
 	}
