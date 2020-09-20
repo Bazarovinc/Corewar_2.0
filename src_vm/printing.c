@@ -60,9 +60,10 @@ void	print_usage(void)
 {
 	ft_printf("Usage:\n\t./corewar [-dump nbr_cycles]"
 			" [[-n number] champion1.cor] ...\n"
-   			"\t\t  [-visu] ... visualise corewar\n"
-	  		"\t\t  [-stat] ... shows statistic of corewar\n"
-	 		"\t\t  [-aff] ... prints output from \"aff\" (Default is to hide it)\n"
+			"\t\t  [-visu] ... visualise corewar\n"
+			"\t\t  [-stat] ... shows statistic of corewar\n"
+			"\t\t  [-aff] ... prints output from \"aff\"
+						(Default is to hide it)\n"
 			"\t\t  [-alive] ... shows that player X is alive\n");
 	exit(0);
 }

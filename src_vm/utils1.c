@@ -61,6 +61,8 @@ int			ft_strtoint(char *str)
 			num = num * 10 + (*s++ - '0');
 		if (num >= 0 && num <= 2147483647)
 			return ((int)num);
+		else
+			return (-1);
 	}
 	else
 		return (-1);

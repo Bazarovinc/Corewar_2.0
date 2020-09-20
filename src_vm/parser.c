@@ -36,10 +36,10 @@ void		colorise_players(t_vm *vm)
 
 static void	parse_dump_flag(char **argv, t_vm *vm)
 {
-	int	num;
+	int num;
 
 	num = 0;
-	if ((num = ft_strtoint(*argv + 1)) >= 0)
+	if ((num = ft_strtoint(*argv)) > 0)
 		vm->dump_fl = num;
 	else
 		error_func("r-", "ERROR: Wrong argument for -dump", vm);
