@@ -6,7 +6,7 @@
 /*   By: ddamaris <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 22:09:21 by ddamaris          #+#    #+#             */
-/*   Updated: 2020/07/24 16:10:27 by ctelma           ###   ########.fr       */
+/*   Updated: 2020/09/20 16:39:15 by ctelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,12 @@ void			init_cursors(t_vm *vm)
 {
 	int			i;
 
-	i = MAX_PLAYERS - 1;
-	while (i >= 0)
+	i = 0;
+	while (i < MAX_PLAYERS)
 	{
 		if (vm->players[i])
 			add_cursor(vm->players[i], vm->players[i]->pc, vm);
-		i--;
+		i++;
 	}
 	vm->last_alive = vm->cursors->player;
 }

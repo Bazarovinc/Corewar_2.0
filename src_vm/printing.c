@@ -6,7 +6,7 @@
 /*   By: ddamaris <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/08 17:00:21 by ddamaris          #+#    #+#             */
-/*   Updated: 2020/09/19 18:14:52 by ctelma           ###   ########.fr       */
+/*   Updated: 2020/09/20 16:13:13 by ctelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,7 @@ void	print_usage(void)
 			" [[-n number] champion1.cor] ...\n"
 			"\t\t  [-visu] ... visualise corewar\n"
 			"\t\t  [-stat] ... shows statistic of corewar\n"
-			"\t\t  [-aff] ... prints output from \"aff\"
-						(Default is to hide it)\n"
+			"\t\t  [-aff] ... prints output from \"aff\" (Default is to hide it)\n"
 			"\t\t  [-alive] ... shows that player X is alive\n");
 	exit(0);
 }
