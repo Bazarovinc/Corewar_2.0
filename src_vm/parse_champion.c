@@ -6,7 +6,7 @@
 /*   By: ddamaris <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 11:27:21 by ddamaris          #+#    #+#             */
-/*   Updated: 2020/07/23 13:51:15 by ctelma           ###   ########.fr       */
+/*   Updated: 2020/09/21 12:29:45 by ctelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void		check_zero(int fd, t_vm *vm)
 static int		parse_code_size(int fd, t_vm *vm)
 {
 	unsigned char	*str;
-	int32_t			res;
+	int				res;
 
 	res = 0;
 	str = read_str(fd, 4, vm);
