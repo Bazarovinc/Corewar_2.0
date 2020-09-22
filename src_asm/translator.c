@@ -6,7 +6,7 @@
 /*   By: dheredat <dheredat@student.21school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/22 14:48:01 by dheredat          #+#    #+#             */
-/*   Updated: 2020/09/21 11:39:08 by ctelma           ###   ########.fr       */
+/*   Updated: 2020/09/21 00:59:46 by dheredat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,28 +89,29 @@ static unsigned int	index_count(t_hero *hero)
 	return (bcsz);
 }
 
-int					translator(t_hero *hero, char *av)
+int					translator(t_hero *hero, char *fn)
 {
 	unsigned char	bc[2192];
 	t_op			*beg;
-	unsigned int	bcsz;
-	int				i;
+	unsigned int	i;
 
 	i = -1;
 	while (++i < 2192)
 		bc[i] = 0;
-	i = -1;
-	while (++i < BCSZ)
-		hero->excode[i] = 0;
+	i = 0;
 	hero->p = 0;
-	bcsz = index_count(hero);
+	hero->bt_cd_sz = index_count(hero);
+	if (!(hero->excode = (unsigned char*)malloc(sizeof(char) * hero->bt_cd_sz)))
+		error_func("r-", "Error! Malloc error.");
+	while (i < hero->bt_cd_sz)
+		hero->excode[i++] = 0;
 	beg = hero->op;
 	while (beg)
 	{
 		if (!(op_code(beg, hero)))
-			exit(0);
+			error_func("r-", "Error! Postprocess error.");
 		beg = beg->next;
 	}
-	write_filler(bc, hero, bcsz, av);
+	write_filler(bc, hero, hero->bt_cd_sz, fn);
 	return (0);
 }

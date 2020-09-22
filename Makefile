@@ -60,7 +60,8 @@ ASM_SRC_LIST = args_checker.c args_patterns.c asm.c \
 			is_labelinst.c letter_check.c memory_hero.c memory_op.c \
 			memory_vldop.c operations.c parse_inst.c read_arguments.c \
 			translator.c ft_countch.c ft_strnewcp.c ft_str_white_trim.c \
-			ft_strjoinchar.c
+			ft_strjoinchar.c dis_dec.c dis_get.c dis_mng.c dis_print.c \
+			dis_type.c error_func.c
 ASM_SRCS = $(addprefix $(ASM_SRC_DIR), $(ASM_SRC_LIST))
 
 VM_OP_SRC_DIR = $(VM_SRC_DIR)operations/

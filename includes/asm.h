@@ -6,7 +6,7 @@
 /*   By: dheredat <dheredat@student.21school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/22 14:41:49 by dheredat          #+#    #+#             */
-/*   Updated: 2020/09/21 11:39:08 by ctelma           ###   ########.fr       */
+/*   Updated: 2020/09/21 23:53:06 by dheredat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define ASM_H
 
 # include "../libft/inc/libft.h"
-# include "../ft_printf/ft_printf.h"
 # include "op.h"
 # include <stdio.h>
 # include <fcntl.h>
@@ -95,7 +94,7 @@
 /*
 **	T_DIR	-	1
 **	T_REG	-	2
-**	T_INDIR	-	4
+**	T_IND	-	4
 */
 
 # define A1_LIVE		T_DIR
@@ -154,7 +153,6 @@
 # define STR_FORK		"fork"
 # define STR_ZJMP		"zjmp"
 
-# define BCSZ			10000
 # define NO_LABEL_PNT	0
 # define NO_LABEL_ARG	2
 
@@ -192,9 +190,23 @@ typedef struct			s_hero
 	char				*name;
 	char				*comment;
 	t_op				*op;
-	unsigned char		excode[BCSZ];
+	unsigned int		bt_cd_sz;
+	unsigned char		*excode;
 	int					p;
 }						t_hero;
+
+typedef struct			s_dis
+{
+	int					fd_src;
+	int					fd_dst;
+	char				*file_name;
+	char				*name;
+	char				*comment;
+	int					code_size;
+	unsigned char		*code;
+	int					pos;
+	t_op				*opers;
+}						t_dis;
 
 int						op_code(t_op *op, t_hero *h);
 int						get_types(t_op *op, t_hero *h);
@@ -273,9 +285,26 @@ void					vldop_del(t_vldop **op);
 void					quit(int e, t_vldop *op, char *arg);
 void					ft_quit(int e, char c);
 void					write_label(char *l);
+void					error_func(char *clr, char *str);
+char					*new_file_name(char *fn, char *ext);
+
+/*
+** DIS
+*/
+
+int						char_to_int(unsigned char *bytecode, size_t size);
+unsigned char			*get_code(t_dis *asm_code);
+void					get_src_code(t_dis *asm_code);
+t_dis					*init_dis_struct(char *file_name);
+void					add_oper(t_op **list, t_op *new);
+void					free_dis_struct(t_dis **asm_code);
+void					print_header_to_dst_file(t_dis *asm_code);
+void         			print_asm_code_to_dst_file(t_dis *asm_code);
+t_op					*get_oper(t_dis *asm_code);
+void					get_darg_types(t_dis *asm_code, t_op *oper);
 int						ft_countch(const char *str, int c);
-char					*ft_strnewncp(const char *str, size_t len);
 char					*ft_str_white_trim(const char *s);
 int						ft_strjoinchar(char **str, char c);
+char					*ft_strnewncp(const char *str, size_t len);
 
 #endif
