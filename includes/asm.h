@@ -299,7 +299,7 @@ t_dis					*init_dis_struct(char *file_name);
 void					add_oper(t_op **list, t_op *new);
 void					free_dis_struct(t_dis **asm_code);
 void					print_header_to_dst_file(t_dis *asm_code);
-void         			print_asm_code_to_dst_file(t_dis *asm_code);
+void					print_asm_code_to_dst_file(t_dis *asm_code);
 t_op					*get_oper(t_dis *asm_code);
 void					get_darg_types(t_dis *asm_code, t_op *oper);
 int						ft_countch(const char *str, int c);

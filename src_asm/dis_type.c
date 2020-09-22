@@ -24,14 +24,12 @@ static unsigned char	get_darg_type(char code)
 		return (0);
 }
 
-static void		set_darg_type(char arg_code,
-								int i,
-								t_op *oper)
+static void				set_darg_type(char arg_code, int i, t_op *oper)
 {
 	oper->types[i] = get_darg_type(arg_code);
 }
 
-void			get_darg_types(t_dis *asm_code, t_op *oper)
+void					get_darg_types(t_dis *asm_code, t_op *oper)
 {
 	unsigned char args_types_code;
 
