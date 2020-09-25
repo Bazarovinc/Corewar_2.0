@@ -6,7 +6,7 @@
 /*   By: ddamaris <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 12:34:21 by ddamaris          #+#    #+#             */
-/*   Updated: 2020/09/21 11:39:08 by ctelma           ###   ########.fr       */
+/*   Updated: 2020/09/24 21:37:33 by ctelma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ void		run_vm(t_vm *vm)
 		start_drow(vm);
 	while (vm->cursors_num)
 	{
+		if (vm->dump_fl == vm->cur_cycle && vm->vis_fl != 0)
+			stop_drow();
 		if (vm->dump_fl == vm->cur_cycle)
 			print_dump(vm->arena, vm);
 		ft_go_drow(vm);
